@@ -23,4 +23,7 @@
 <body>
 
 </body>
+        <footer>
+            <script src="client.js"></script>
+        </footer>
 </html>
