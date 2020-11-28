@@ -13,3 +13,8 @@ function show_message(text) {
     socket.onclose = function () {
         show_message("Disconnect");
     };
+
+    socket.onmessage = function (e) {
+        let message = JSON.parse(e.data);
+        show_message(message.type + " : " + message.message);
+    };
