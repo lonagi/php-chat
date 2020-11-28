@@ -1,2 +1,2 @@
 # php-chat
-Simple chat in PHP using TCP
+Simple chat in PHP using WebSockets
