@@ -20,10 +20,14 @@
             }
         </style>
     </head>
-<body>
+    <body>
+        <form action="">
+            <div id="chat-response">
 
-</body>
+            </div>
+        </form>
         <footer>
             <script src="client.js"></script>
         </footer>
+    </body>
 </html>
