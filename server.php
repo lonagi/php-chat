@@ -9,7 +9,10 @@ socket_set_option($socket, SOL_SOCKET, SO_REUSEADDR, 1);
 socket_bind($socket,0,PORT);
 socket_listen($socket);
 
+$client_sockets = [$socket];
+
 while(true) {
+    
     $_socket = socket_accept($socket);
     $header = socket_read($_socket,40960);
     $chat->send_headers($header, $_socket,"localhost",PORT);
