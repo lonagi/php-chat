@@ -13,7 +13,8 @@ $client_sockets = [$socket];
 
 while(true) {
     $_client_sockets = [$client_sockets];
-    socket_select($_client_sockets,null,null,0,0);
+    $null_ = [];
+    socket_select($_client_sockets,$null_,$null_,0,10);
 
     if(in_array($socket,$_client_sockets)) {
         $_socket = socket_accept($socket);
