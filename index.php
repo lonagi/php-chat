@@ -10,20 +10,7 @@ header("X-XSS-Protection: 1; mode=block");
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <script src="https://ex.nvg-group.com/libs/jquery/3.4.1/f.min.js"></script>
-        <style>
-            #chat-response {
-                display: inline-block;
-                background: aliceblue;
-                padding: 20px;
-                font-size: 18px;
-                color: black;
-                border: 1px solid #9c9c9c;
-                width: 500px;
-                min-height: 200px;
-                overflow-y: scroll;
-                -ms-overflow-y: scroll;
-            }
-        </style>
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
         <form action="">

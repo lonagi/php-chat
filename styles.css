@@ -1,0 +1,12 @@
+#chat-response {
+    display: inline-block;
+    background: aliceblue;
+    padding: 20px;
+    font-size: 18px;
+    color: black;
+    border: 1px solid #9c9c9c;
+    width: 500px;
+    min-height: 200px;
+    overflow-y: scroll;
+    -ms-overflow-y: scroll;
+}
