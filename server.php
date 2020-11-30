@@ -12,10 +12,15 @@ socket_listen($socket);
 $client_sockets = [$socket];
 
 while(true) {
-    
-    $_socket = socket_accept($socket);
-    $header = socket_read($_socket,40960);
-    $chat->send_headers($header, $_socket,"localhost",PORT);
+    $_client_sockets = [$client_sockets];
+    socket_select($_client_sockets,null,null,0,0);
+
+    if(in_array($socket,$_client_sockets)) {
+        $_socket = socket_accept($socket);
+        $client_sockets[] = $_socket;
+        $header = socket_read($_socket,40960);
+        $chat->send_headers($header, $_socket,"localhost",PORT);
+    }
 }
 
 socket_close();
