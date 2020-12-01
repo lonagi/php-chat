@@ -24,6 +24,24 @@ class Chat {
 
         return $this->seal(json_encode(["message"=>$message,"type"=>"new_connection"]));
     }
+
+    public function seal($socket_data) {
+        $b1 = 0x81;
+        $b2 = strlen($socket_data);
+        $h = "";
+
+        if($b2 <= 125) {
+            $h = pack("CC", $b1, $b2);
+        }
+        else if($b2 > 125 && $b2 < 65536) {
+            $h = pack("CCn", $b1, 126, $b2);
+        }
+        else {
+            $h = pack("CCNN", $b1, 127, $b2);
+        }
+        return $h.$socket_data;
+    }
+
     public function send($message, $clients) {
         $len = strlen($message);
         foreach ($clients as $client)
