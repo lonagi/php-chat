@@ -7,7 +7,6 @@ class Chat {
 
         foreach ($tmp as $t) {
             $t = rtrim($t);
-            echo $t."\n\n\n";
             if(preg_match('/\A(\S+): (.*)\z/', $t, $matches))
                 $headers[$matches[1]] = $matches[2];
         }
@@ -19,6 +18,7 @@ class Chat {
 
         socket_write($_socket, $send_headers, strlen($send_headers));
     }
+
     public function new_connection($client_ip) {
         $message = "New client ".$client_ip;
 
