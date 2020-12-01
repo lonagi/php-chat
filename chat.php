@@ -24,6 +24,12 @@ class Chat {
 
         return $this->seal(json_encode(["message"=>$message,"type"=>"new_connection"]));
     }
+    public function send($message, $clients) {
+        $len = strlen($message);
+        foreach ($clients as $client)
+            @socket_write($client, $message, $len);
+        return true;
+    }
 }
 
 ?>
