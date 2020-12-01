@@ -19,10 +19,13 @@ while(true) {
     if(in_array($socket,$_client_sockets)) {
         $_socket = socket_accept($socket);
         $client_sockets[] = $_socket;
+
         $header = socket_read($_socket,40960);
         $chat->send_headers($header, $_socket,"localhost",PORT);
 
         socket_getpeername($_socket, $client_ip);
+        $connection = $chat->new_connection($client_ip);
+        $chat->send($connection,$client_sockets);
     }
 }
 
