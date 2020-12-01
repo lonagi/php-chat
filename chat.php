@@ -19,6 +19,11 @@ class Chat {
 
         socket_write($_socket, $send_headers, strlen($send_headers));
     }
+    public function new_connection($client_ip) {
+        $message = "New client ".$client_ip;
+
+        return $this->seal(json_encode(["message"=>$message,"type"=>"new_connection"]));
+    }
 }
 
 ?>
