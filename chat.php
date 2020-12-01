@@ -30,15 +30,12 @@ class Chat {
         $b2 = strlen($socket_data);
         $h = "";
 
-        if($b2 <= 125) {
+        if($b2 <= 125)
             $h = pack("CC", $b1, $b2);
-        }
-        else if($b2 > 125 && $b2 < 65536) {
+        else if($b2 > 125 && $b2 < 65536)
             $h = pack("CCn", $b1, 126, $b2);
-        }
-        else {
+        else
             $h = pack("CCNN", $b1, 127, $b2);
-        }
         return $h.$socket_data;
     }
 
