@@ -12,7 +12,7 @@ socket_listen($socket);
 $client_sockets = [$socket];
 
 while(true) {
-    $_client_sockets = [$client_sockets];
+    $_client_sockets = $client_sockets;
     $null_ = [];
     socket_select($_client_sockets,$null_,$null_,0,10);
 
