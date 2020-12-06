@@ -24,6 +24,12 @@ class Chat {
         return $this->seal(json_encode(["message"=>$message,"type"=>"new_connection"]));
     }
 
+
+    public function new_disconnect($client_ip) {
+        $message = "Client ".$client_ip." disconnected";
+        return $this->seal(json_encode(["message"=>$message,"type"=>"connection"]));
+    }
+
     public function seal($socket_data) {
         $b1 = 0x81;
         $b2 = strlen($socket_data);
