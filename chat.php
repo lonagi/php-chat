@@ -65,6 +65,16 @@ class Chat {
         return $socket_str;
     }
 
+    public function create_chat_message($username, $message) {
+        $message = $username."<div>".$message."</div>";
+        $message_dict = [
+            'type' => "chat",
+            'message' => $message
+        ];
+
+        return $this->seal(json_encode($message_dict));
+    }
+
     public function send($message, $clients) {
         $len = strlen($message);
         foreach ($clients as $client)
