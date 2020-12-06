@@ -26,6 +26,11 @@ while(true) {
         socket_getpeername($_socket, $client_ip);
         $connection = $chat->new_connection($client_ip);
         $chat->send($connection,$client_sockets);
+
+        $_client_sockets_index = array_search($socket,$_client_sockets);
+        unset($_client_sockets[$_client_sockets_index]);
+    }
+
     }
 }
 
