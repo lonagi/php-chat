@@ -31,6 +31,24 @@ while(true) {
         unset($_client_sockets[$_client_sockets_index]);
     }
 
+    foreach($_client_sockets as $_client_socket_res) {
+        while(socket_recv($_client_socket_res,$socket_data,40960,0) >= 1 ) {
+            $socket_message = $chat->unseal($socket_data);
+            $message = json_decode($socket_message);
+            $chat_message = $chat->create_chat_message($message->chat_user, $message->chat_message);
+            $chat->send($chat_message,$client_sockets);
+
+            break 2;
+        }
+
+        $socket_data = @socket_read($_client_socket_res,40960,PHP_NORMAL_READ);
+        if($socket_data === false) {
+            socket_getpeername($_client_socket_res, $client_ip);
+            $connection = $chat->new_disconnect($client_ip);
+            $chat->send($connection,$client_sockets);
+            $_client_sockets_index = array_search($_client_socket_res,$client_sockets);
+            unset($client_sockets[$_client_sockets_index]);
+        }
     }
 }
 
