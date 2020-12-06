@@ -38,6 +38,27 @@ class Chat {
         return $h.$socket_data;
     }
 
+    public function unseal($socket_data) {
+        $len = ord($socket_data[1]) & 127;
+        if($len == 126) {
+            $mask = substr($socket_data,4,4);
+            $data = substr($socket_data,8);
+        }
+        else if($len == 127) {
+            $mask = substr($socket_data,10,4);
+            $data = substr($socket_data,14);
+        }
+        else {
+            $mask = substr($socket_data,2,4);
+            $data = substr($socket_data,6);
+        }
+
+        $socket_str = "";
+        for($i=0;$i<strlen($data);++$i)
+            $socket_str .= $data[$i] ^ $mask[$i%4];
+        return $socket_str;
+    }
+
     public function send($message, $clients) {
         $len = strlen($message);
         foreach ($clients as $client)
