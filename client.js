@@ -21,4 +21,16 @@ $(document).ready(function () {
         let message = JSON.parse(e.data);
         show_message(message.type + " : " + message.message);
     };
+
+    $("#chat").on('submit', function () {
+        var message = {
+          chat_message: $("#chat-message").val(),
+          chat_user: $("#chat-user").val()
+        };
+
+        $("#chat-user").attr('type','hidden');
+
+        socket.send(JSON.stringify(message));
+        return false;
+    });
 });
