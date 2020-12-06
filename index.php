@@ -13,9 +13,11 @@ header("X-XSS-Protection: 1; mode=block");
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <form action="">
+        <form action="" id="chat">
             <div id="chat-response">
-
+                <input type="text" name="chat-user" id="chat-user">
+                <input type="text" name="chat-message" id="chat-message">
+                <input type="submit" value="Send">
             </div>
         </form>
         <footer>
